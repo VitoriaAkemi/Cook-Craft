@@ -2,9 +2,10 @@ package br.com.fiap.cookcraft;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
-@SpringBootApplication
-public class CookCraftApplication {
+@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
+	public class CookCraftApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CookCraftApplication.class, args);
