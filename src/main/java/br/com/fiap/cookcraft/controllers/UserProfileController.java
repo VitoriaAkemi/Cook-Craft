@@ -1,6 +1,7 @@
 package br.com.fiap.cookcraft.controllers;
 
 
+import br.com.fiap.cookcraft.dto.UserProfileDTO;
 import br.com.fiap.cookcraft.entities.UserProfile;
 import br.com.fiap.cookcraft.services.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,14 @@ public class UserProfileController {
     }
 
     @GetMapping
-    private ResponseEntity<List<UserProfile>> findAll(){
-        List<UserProfile> profiles = service.findAll();
+    private ResponseEntity<List<UserProfileDTO>> findAll(){
+        List<UserProfileDTO> profiles = service.findAll();
+        return ResponseEntity.ok(profiles);
+    }
+
+    @GetMapping(value = "/receitas")
+    private ResponseEntity<List<UserProfile>> findAllReceitas(){
+        List<UserProfile> profiles = service.findAllReceitas();
         return ResponseEntity.ok(profiles);
     }
 

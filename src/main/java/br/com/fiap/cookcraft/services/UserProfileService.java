@@ -1,5 +1,6 @@
 package br.com.fiap.cookcraft.services;
 
+import br.com.fiap.cookcraft.dto.UserProfileDTO;
 import br.com.fiap.cookcraft.entities.UserProfile;
 import br.com.fiap.cookcraft.exception.EntityNotFoundException;
 import br.com.fiap.cookcraft.repositories.UserProfileRepository;
@@ -21,8 +22,16 @@ public class UserProfileService {
     }
 
     @Transactional(readOnly = true)
-    public List<UserProfile> findAll(){
+    public List<UserProfile> findAllReceitas(){
         return repository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public List<UserProfileDTO> findAll(){
+        List<UserProfile> profiles = repository.findAll();
+        List<UserProfileDTO> profilesDTO = profiles.stream().map(profile -> new UserProfileDTO(profile)).toList();
+
+        return profilesDTO;
     }
 
     @Transactional(readOnly = true)
