@@ -31,7 +31,7 @@ public class ReceitaService {
 
     @Transactional(readOnly = true)
     public Receitas findByNomeReceita(String nomeReceita) {
-        return repository.findByNomeReceita(nomeReceita).orElseThrow(() -> new EntityNotFoundException("Receita não encontrada"));
+        return repository.findByNomeReceitaLike(nomeReceita).orElseThrow(() -> new EntityNotFoundException("Receita não encontrada"));
     }
 
     @Transactional
