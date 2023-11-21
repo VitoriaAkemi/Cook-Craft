@@ -33,6 +33,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "api/v1/users").permitAll()
                         .requestMatchers(HttpMethod.POST, "api/v1/auth").permitAll()
                         .requestMatchers(HttpMethod.POST, "api/v1/profiles").permitAll()
+                        .requestMatchers(HttpMethod.GET, "api/v1/profiles").permitAll()
                         .anyRequest().authenticated()
                 ).sessionManagement(
                         session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
