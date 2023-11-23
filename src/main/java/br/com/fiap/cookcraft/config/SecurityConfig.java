@@ -32,6 +32,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "api/v1/users").permitAll()
                         .requestMatchers(HttpMethod.POST, "api/v1/auth").permitAll()
+                        .requestMatchers(HttpMethod.POST, "api/v1/validateAuth/{token}").permitAll()
                         .requestMatchers(HttpMethod.POST, "api/v1/profiles").permitAll()
                         .requestMatchers(HttpMethod.GET, "api/v1/profiles").permitAll()
                         .anyRequest().authenticated()

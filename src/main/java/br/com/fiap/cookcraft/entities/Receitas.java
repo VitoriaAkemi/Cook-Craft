@@ -26,7 +26,7 @@ public class Receitas {
     @JsonBackReference
     private UserProfile profile;
 
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "ingrediente_id", referencedColumnName = "id")
     private List<Ingredientes> ingredientes;
 

@@ -4,6 +4,7 @@ import br.com.fiap.cookcraft.dto.UserLoginDTO;
 import br.com.fiap.cookcraft.exception.ErrorMessage;
 import br.com.fiap.cookcraft.jwt.JwtToken;
 import br.com.fiap.cookcraft.jwt.JwtUserDetailsService;
+import br.com.fiap.cookcraft.jwt.JwtUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -40,6 +41,17 @@ public class AuthController {
         }
 
         return ResponseEntity.badRequest().body(new ErrorMessage(request, HttpStatus.BAD_REQUEST, "Credenciais incorretas"));
+    }
+
+    @PostMapping(value ="/validateAuth/{token}")
+    public ResponseEntity<?> validateAuth(@PathVariable String token) {
+
+        Boolean valid = JwtUtils.isTokenValid(token);
+        if(valid){
+            return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
     }
 
 }
